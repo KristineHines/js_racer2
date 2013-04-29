@@ -1,51 +1,34 @@
-// Some general UI pack related JS
-
-$(function () {
-    // Custom selects
-    $("select").dropkick();
-});
-
 $(document).ready(function() {
-    // Todo list
-    $(".todo li").click(function() {
-        $(this).toggleClass("todo-done");
+  finish_line = 30
+  player1_pos = 0
+  player2_pos = 0
+    
+    $('body').keyup(function(evt) {
+
+      if ((evt.keyCode == 69) && (player1_pos < finish_line))
+      {
+        player1 = $(this).find('#player1_strip td.active1')
+        player1.removeClass('active1');
+        player1.next().addClass('active1');
+        player1_pos++;  
+        if (player1_pos == finish_line)
+        {
+          alert('Player 1 won')
+        }    
+      }
+
+      if ((evt.keyCode == 77) && (player2_pos < finish_line))
+      {
+        player2 = $(this).find('#player2_strip td.active2')
+        player2.removeClass('active2');
+        player2.next().addClass('active2');
+        player2_pos++;
+        if (player2_pos == finish_line)
+        {
+          alert('Player 2 won')
+        }       
+      }
+
     });
-
-    // Init tooltips
-    $("[data-toggle=tooltip]").tooltip("show");
-
-    // Init tags input
-    $("#tagsinput").tagsInput();
-
-    // Init jQuery UI slider
-    $("#slider").slider({
-        min: 1,
-        max: 5,
-        value: 2,
-        orientation: "horizontal",
-        range: "min",
-    });
-
-    // JS input/textarea placeholder
-    $("input, textarea").placeholder();
-
-    // Make pagination demo work
-    $(".pagination a").click(function() {
-        if (!$(this).parent().hasClass("previous") && !$(this).parent().hasClass("next")) {
-            $(this).parent().siblings("li").removeClass("active");
-            $(this).parent().addClass("active");
-        }
-    });
-
-    $(".btn-group a").click(function() {
-        $(this).siblings().removeClass("active");
-        $(this).addClass("active");
-    });
-
-    // Disable link click not scroll top
-    $("a[href='#']").click(function() {
-        return false
-    });
-
-});
-
+})
+ 
