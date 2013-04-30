@@ -5,6 +5,18 @@ $(document).ready(function() {
   start_time = null
   end_time = null
   start_time = new Date();
+  player_1_id = null
+  player_2_id = null
+  player_1_name = null
+  player_2_name = null
+
+  $.get(window.location.pathname + '/players', function(data) {
+    player_1_name = data[0].player.name
+    player_2_name = data[1].player.name
+    player_1_id = data[0].player.id
+    player_2_id = data[1].player.id
+  });
+
     
     $('body').keyup(function(evt) {
       if ((evt.keyCode == 69) && (player1_pos < finish_line))
@@ -19,11 +31,12 @@ $(document).ready(function() {
           end_time = new Date();
           var time_played = (end_time - start_time);
           $.ajax({
-            url: '/games',
+            url: window.location.pathname,
             method: 'PUT',
-            data: 'winner_id='+1+'&time_played='+time_played,
+            data: 'winner_id=' + player_1_id + '&time_played='+time_played / 1000,
             success: function(data){}
           })
+          $('.winner').text("THE WINNER IS " + player_1_name)
         }    
       }
 
@@ -38,11 +51,12 @@ $(document).ready(function() {
           end_time = new Date();
           var time_played = (end_time - start_time);
           $.ajax({
-            url: '/games/',
+            url: window.location.pathname,
             method: 'PUT',
-            data: 'winner_id='+2+'&time_played='+time_played,
+            data: 'winner_id=' + player_2_id + '&time_played='+time_played / 1000,
             success: function(data){}
           })
+          $('.winner').text("THE WINNER IS " + player_2_name)
         }       
       }
 

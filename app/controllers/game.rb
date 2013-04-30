@@ -19,26 +19,18 @@ get '/games/:id' do
   erb :game
 end
 
-put '/games' do
-  p 'params bel?ow!'
-  p params[:winner_id]
-  # @game = Game.find(params[:id])
-  # @player_1 = @game.players.first
-  # @player_2 = @game.players.last
-  
-  content_type :json
-  p Game.find(params[:id]).players.to_json
+put '/games/:id' do
+  @game = Game.find(params[:id])
+  @game.update_attributes(winner_id: params[:winner_id], time_played: params[:time_played])
+  @winner = @game.players.find(params[:winner_id])
+  puts @winner
 end 
 
-# get '/games/:id/players' do
-#   content_type :json
-#   Game.find(params[:id]).players.to_json
-# end
+get '/games/:id/players' do
+  content_type :json
+  json = Game.find(params[:id]).players.to_json
+  puts json
+  json
+end
 
-
-# get '/games/:id' do
-#   # p session[:game].players
-#   @game = Game.find(params[:id])
-#   erb :game
-# end
 
