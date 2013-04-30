@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  finish_line = 30;
+  finish_line = 25;
   player1_pos = 0;
   player2_pos = 0;
   playing = true
