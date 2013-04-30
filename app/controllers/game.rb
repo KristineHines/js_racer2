@@ -22,15 +22,12 @@ end
 put '/games' do
   p 'params bel?ow!'
   p params[:winner_id]
-  update_hash = {}
-  update_hash[:winner_id] = params[:winner_id]
-  update_hash[:time_played] = params[:time_played]
   # @game = Game.find(params[:id])
   # @player_1 = @game.players.first
   # @player_2 = @game.players.last
-  the_game = Game.find(params[:game_id]).update_attributes(update_hash)
-  p the_game 
-  # the_game
+  
+  content_type :json
+  p Game.find(params[:id]).players.to_json
 end 
 
 # get '/games/:id/players' do

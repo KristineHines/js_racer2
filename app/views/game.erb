@@ -1,3 +1,10 @@
+<script>
+  var Game = {
+      winner_id : <%= @game.players %>
+  };
+</script>
+
+
 <div class="container">
   <table border='5px' class="racer_table">
     <tr id="player1_strip">
@@ -70,11 +77,3 @@
     </tr>
   </table>
 </div>
-
-
-<script>
-var current_game_id = <%= @game.id %> ;
-var player_1_id = <%= @player_1.id %> ;
-var player_2_id = <%= @player_2.id %> ;
-
-</script>
