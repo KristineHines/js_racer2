@@ -1,4 +1,4 @@
-post '/game' do
+post '/games' do
   player_1 = Player.create(name: params[:player_1_name], initials: params[:player_1_initials])
   player_2 = Player.create(name: params[:player_2_name], initials: params[:player_2_initials])
 
@@ -6,18 +6,20 @@ post '/game' do
   game.players << player_1
   game.players << player_2
 
-  redirect to "/game/#{game.id}/play"
+  redirect to "/games/#{game.id}"
 end
 
-get '/game/:id/play' do
+get '/games/:id' do
   @game = Game.find(params[:id])
   @player_1 = @game.players.first
   @player_2 = @game.players.last
+  
+
 
   erb :game
-end 
+end
 
-put '/game/:id' do
+put '/games' do
   p 'params bel?ow!'
   p params[:winner_id]
   update_hash = {}
@@ -27,4 +29,19 @@ put '/game/:id' do
   # @player_1 = @game.players.first
   # @player_2 = @game.players.last
   the_game = Game.find(params[:game_id]).update_attributes(update_hash)
-end
+  p the_game 
+  # the_game
+end 
+
+# get '/games/:id/players' do
+#   content_type :json
+#   Game.find(params[:id]).players.to_json
+# end
+
+
+# get '/games/:id' do
+#   # p session[:game].players
+#   @game = Game.find(params[:id])
+#   erb :game
+# end
+
