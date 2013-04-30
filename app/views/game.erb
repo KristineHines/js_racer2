@@ -1,12 +1,13 @@
 <div class="container">
-  <h1>I'm a little teapot racer</h1>
-
-  <br><br>
-
   <table border='5px' class="racer_table">
     <tr id="player1_strip">
       <td class='player'><%= @player_1.name %></td>
       <td class="active1"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
       <td></td>
       <td></td>
       <td></td>
@@ -61,12 +62,19 @@
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   </table>
 </div>
 
+
 <script>
-  var current_game_id = <%= @game.id %> ;
-  var player_1_id = <%= @player_1.id %> ;
-  var player_2_id = <%= @player_2.id %> ;
+var current_game_id = <%= @game.id %> ;
+var player_1_id = <%= @player_1.id %> ;
+var player_2_id = <%= @player_2.id %> ;
+
 </script>
